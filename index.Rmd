@@ -1,7 +1,7 @@
 ---
-title: "CyanTracker Maps"
+title: "CyANtracker Maps"
 output: html_document
-date: "`r Sys.Date()`"
+date: "Last updated `r Sys.Date()`"
 ---
 
 ```{r setup, include=FALSE}
@@ -19,7 +19,9 @@ titles = links %>%
   str_remove(".html")
 ```
 
-## Maps available:
+GitHub repo: [https://github.com/cbuelo/CyANtracker](https://github.com/cbuelo/CyANtracker)
+
+### Maps available:
 ```{r list, echo=FALSE, results="asis"}
 for(i in 1:length(links)){
   cat("- [", titles[i], "](", links[i], ")")
