@@ -40,4 +40,7 @@ if(!cur_date %in% prev_dates){
   
   # make and save map
   plot_map(forecast_table, cur_date)
+  
+  # re-render the index file to push to pages
+  rmarkdown::render("index.Rmd")
 }
