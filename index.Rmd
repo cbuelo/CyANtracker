@@ -1,0 +1,29 @@
+---
+title: "CyanTracker Maps"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r links}
+# get html files
+links = fs::dir_ls("Maps") %>% 
+  str_subset(".html")
+titles = links %>% 
+  str_remove("Maps/CyAN_forecast_map_") %>% 
+  str_remove(".html")
+```
+
+## Maps available:
+```{r list, echo=FALSE, results="asis"}
+for(i in 1:length(links)){
+  cat("- [", titles[i], "](", links[i], ")")
+}
+
+```
+
