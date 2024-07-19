@@ -17,6 +17,12 @@ links = fs::dir_ls("Maps") %>%
 titles = links %>% 
   str_remove("Maps/CyAN_forecast_map_") %>% 
   str_remove(".html")
+dates = titles %>% 
+  str_split_i(" to ", 2) %>% 
+  as.Date(format = "%b-%d-%Y")
+dates_order = order(dates, decreasing = T)
+titles = titles[dates_order]
+links = links[dates_order]
 ```
 
 GitHub repo: [https://github.com/cbuelo/CyANtracker](https://github.com/cbuelo/CyANtracker)
@@ -25,6 +31,7 @@ GitHub repo: [https://github.com/cbuelo/CyANtracker](https://github.com/cbuelo/C
 ```{r list, echo=FALSE, results="asis"}
 for(i in 1:length(links)){
   cat("- [", titles[i], "](", links[i], ")")
+  cat("\n")
 }
 
 ```
