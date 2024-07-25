@@ -22,11 +22,11 @@ jobs:
         
       - name: Scrape and map
         run: |
-          Rscript -e 'setwd(".."); print(getwd()); print(ls())'
+          Rscript -e 'setwd(".."); print(getwd()); print(list.files())'
           Rscript -e 'source("Rscripts/forecast_map.R")'
           Rscript -e 'print(getwd())'
-          Rscript -e 'print(ls())'
-          Rscript -e 'print(ls("Maps"))'
+          Rscript -e 'print(list.files())'
+          Rscript -e 'print(list.files("Maps"))'
         
       - name: Commit results
         run: |
