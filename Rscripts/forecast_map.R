@@ -26,7 +26,7 @@ prev_dates = list.files("Data") |>
   str_remove(".csv")
 cur_date = forecast_table$Date[1]
 print(prev_dates)
-print("*****)
+print("*****")
 print(cur_date)
 if(!cur_date %in% prev_dates){
   # format table
