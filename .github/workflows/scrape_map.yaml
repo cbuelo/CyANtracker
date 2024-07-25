@@ -21,7 +21,9 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
         
       - name: Scrape and map
-        run: Rscript -e 'source("Rscripts/forecast_map.R")'
+        run: |
+          Rscript -e 'source("Rscripts/forecast_map.R")'
+          Rscript -e 'print(ls("Maps"))'
         
       - name: Commit results
         run: |
