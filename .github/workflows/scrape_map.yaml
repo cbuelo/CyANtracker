@@ -23,6 +23,8 @@ jobs:
       - name: Scrape and map
         run: |
           Rscript -e 'source("Rscripts/forecast_map.R")'
+          Rscript -e 'print(getwd())'
+          Rscript -e 'print(ls())'
           Rscript -e 'print(ls("Maps"))'
         
       - name: Commit results
