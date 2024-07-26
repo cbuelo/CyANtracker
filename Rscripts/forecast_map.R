@@ -31,6 +31,7 @@ if(!cur_date %in% prev_dates){
   
   pandoc::pandoc_install()
   rmarkdown::find_pandoc()
+  print("tried finding pandoc")
   # format table
   forecast_table = forecast_table |> 
     rename(lake = `Lake Name`,
