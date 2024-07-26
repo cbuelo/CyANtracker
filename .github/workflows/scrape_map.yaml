@@ -24,6 +24,7 @@ jobs:
         
       - name: Scrape and map
         run: |
+          Rscript -e 'pandoc::pandoc_install()'
           Rscript -e 'setwd(".."); print(getwd()); print(list.files())'
           Rscript -e 'source("Rscripts/forecast_map.R")'
           Rscript -e 'print(getwd())'
