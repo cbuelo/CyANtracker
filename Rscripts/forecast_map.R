@@ -6,7 +6,6 @@ library(readr)
 library(leaflet)
 library(rvest)
 library(htmltools)
-library(pandoc)
 
 # source map function
 source("Rscripts/plot_map.R")
@@ -27,6 +26,10 @@ prev_dates = list.files("Data") |>
   str_remove(".csv")
 cur_date = forecast_table$Date[1]
 if(!cur_date %in% prev_dates){
+  library(gh)
+  library(pandoc)
+  
+  pandoc::pandoc_install()
   # format table
   forecast_table = forecast_table |> 
     rename(lake = `Lake Name`,
