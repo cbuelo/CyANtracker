@@ -29,9 +29,11 @@ if(!cur_date %in% prev_dates){
   library(gh)
   library(pandoc)
   
-  pandoc::pandoc_install()
-  rmarkdown::find_pandoc()
+  pd_loc = pandoc::pandoc_install()
   print("tried finding pandoc")
+  print(pd_loc)
+  rmarkdown::find_pandoc(pd_loc)
+  pandoc::pandoc_activate()
   # format table
   forecast_table = forecast_table |> 
     rename(lake = `Lake Name`,
@@ -50,5 +52,6 @@ if(!cur_date %in% prev_dates){
   plot_map(forecast_table, cur_date)
   
   # re-render the index file to push to pages
+  pandoc::
   rmarkdown::render("index.Rmd")
 }
