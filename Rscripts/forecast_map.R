@@ -53,8 +53,11 @@ if(!cur_date %in% prev_dates){
   
   # re-render the index file to push to pages
   startpath = Sys.getenv("PATH")
-  hold_pandoc_loc = rmarkdown::find_pandoc()
+  hold_pandoc_loc = pandoc::pandoc_bin() # rmarkdown::find_pandoc()
+  print(hold_pandoc_loc)
   Sys.setenv(PATH = paste(startpath, hold_pandoc_loc$dir, sep=":"))
+  print("PATH set")
   rmarkdown::render("index.Rmd")
+  print("Ran render")
   Sys.setenv(PATH = startpath)
 }
