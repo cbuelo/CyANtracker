@@ -52,6 +52,9 @@ if(!cur_date %in% prev_dates){
   plot_map(forecast_table, cur_date)
   
   # re-render the index file to push to pages
-  pandoc::
+  startpath = Sys.getenv("PATH")
+  hold_pandoc_loc = rmarkdown::find_pandoc()
+  Sys.setenv(PATH = paste(startpath, hold_pandoc_loc$dir, sep=":"))
   rmarkdown::render("index.Rmd")
+  Sys.setenv(PATH = startpath)
 }
