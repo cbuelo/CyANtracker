@@ -32,7 +32,8 @@ if(!cur_date %in% prev_dates){
   pd_loc = pandoc::pandoc_install()
   print("tried finding pandoc")
   print(pd_loc)
-  rmarkdown::find_pandoc(pd_loc)
+  print("!!!")
+  # rmarkdown::find_pandoc(pd_loc)
   pandoc::pandoc_activate()
   # format table
   print("got to forecast_table formatting")
