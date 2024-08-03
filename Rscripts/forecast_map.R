@@ -35,6 +35,7 @@ if(!cur_date %in% prev_dates){
   rmarkdown::find_pandoc(pd_loc)
   pandoc::pandoc_activate()
   # format table
+  print("got to forecast_table formatting")
   forecast_table = forecast_table |> 
     rename(lake = `Lake Name`,
            chance_cyanoHAB = `% Chance of CyanoHAB`,
@@ -46,11 +47,12 @@ if(!cur_date %in% prev_dates){
            label = paste(lake, paste0(chance_cyanoHAB, "%"), sep=" </br> ")) |> 
     rename(date_range = Date)
   # save table
+  print("got to writing")
   write_csv(forecast_table, file.path("Data", paste0(cur_date, ".csv")))
-  
+  print("before plot_map")
   # make and save map
   plot_map(forecast_table, cur_date)
-  
+  print("after plot_map")
   # re-render the index file to push to pages
   startpath = Sys.getenv("PATH")
   hold_pandoc_loc = pandoc::pandoc_bin() # rmarkdown::find_pandoc()
