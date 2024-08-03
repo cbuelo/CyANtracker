@@ -58,7 +58,7 @@ if(!cur_date %in% prev_dates){
   startpath = Sys.getenv("PATH")
   hold_pandoc_loc = pandoc::pandoc_bin() # rmarkdown::find_pandoc()
   print(hold_pandoc_loc)
-  Sys.setenv(PATH = paste(startpath, hold_pandoc_loc$dir, sep=":"))
+  Sys.setenv(PATH = paste(startpath, hold_pandoc_loc, sep=":"))
   print("PATH set")
   rmarkdown::render("index.Rmd")
   print("Ran render")
