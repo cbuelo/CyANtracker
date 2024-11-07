@@ -19,9 +19,9 @@ plot_map <- function(forecast_df, dates, save_map = T){
   title = htmltools::tags$div(tag.map.title, HTML(dates))
   
   #make the map
-  map_out = leaflet(data= forecast_table) %>% 
-    addProviderTiles("OpenStreetMap.Mapnik") %>% 
-    addCircleMarkers(lng=~lon, lat=~lat, color=~pal_use(chance_cyanoHAB), label = lapply(forecast_table$label, htmltools::HTML)) %>% 
+  map_out = leaflet(data= forecast_table) |> 
+    addProviderTiles("OpenStreetMap.Mapnik") |> 
+    addCircleMarkers(lng=~lon, lat=~lat, color=~pal_use(chance_cyanoHAB), label = lapply(forecast_table$label, htmltools::HTML)) |> 
     addControl(title, position="topleft", className = "map-title")
   
   # save the map

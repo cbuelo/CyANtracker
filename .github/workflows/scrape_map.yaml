@@ -1,0 +1,40 @@
+on:
+  schedule:
+    - cron: '0 16 * * 3' #*/5 * * * *  #
+    
+jobs:
+  scrape-map:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+        
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        
+      - name: get dependencies
+        run: |
+          Rscript -e 'system("sudo apt-get install libcurl4-openssl-dev")'
+          Rscript -e 'system("sudo apt-get install -y libgdal-dev")'
+          
+      - name: Install packages
+        uses: r-lib/actions/setup-renv@v2
+        
+      - name: Scrape and map
+        run: |
+          Rscript -e 'setwd(".."); print(getwd()); print(list.files())'
+          Rscript -e 'source("Rscripts/forecast_map.R")'
+          Rscript -e 'print(getwd())'
+          Rscript -e 'print(list.files())'
+          Rscript -e 'print(list.files("Maps"))'
+        
+      - name: Commit results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m 'weekly update' || echo "No changes to commmit"
+          git push origin || echo "No changes to commit"
+        
